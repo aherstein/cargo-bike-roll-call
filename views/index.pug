@@ -8,4 +8,4 @@ block content
         ul
             each val, index in bike
                 if  index != "_id" && index != "meta"
-                    li #{index.replace(/^\b\w/g, l = > l.toUpperCase())}: #{val}
+                    li #{index.replace(/^\b\w/g, l => l.toUpperCase())}: #{val}
