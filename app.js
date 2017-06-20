@@ -8,6 +8,8 @@ var sassMiddleware = require('node-sass-middleware');
 var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk('localhost:27017/cargobike');
+var expressVue = require('express-vue');
+
 
 var index = require('./routes/ui/index');
 var usersApi = require('./routes/api/users');
@@ -17,7 +19,14 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+
+// view engine setup for vue
+app.set('vue', {
+    componentsDir: __dirname + '/components',
+    defaultLayout: 'layout'
+});
+app.engine('vue', expressVue);
+app.set('view engine', 'vue');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
