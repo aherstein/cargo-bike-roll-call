@@ -5,6 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var sassMiddleware = require('node-sass-middleware');
+var mongo = require('mongodb');
+var monk = require('monk');
+var db = monk('localhost:27017/cargobike');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -28,6 +31,12 @@ app.use(sassMiddleware({
     sourceMap: true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Make our db accessible to our router
+app.use(function (req, res, next) {
+    req.db = db;
+    next();
+});
 
 app.use('/', index);
 app.use('/users', users);
