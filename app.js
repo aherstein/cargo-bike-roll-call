@@ -9,8 +9,9 @@ var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk('localhost:27017/cargobike');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+var index = require('./routes/ui/index');
+var usersApi = require('./routes/api/users');
+var bikesApi = require('./routes/api/bikes');
 
 var app = express();
 
@@ -39,7 +40,8 @@ app.use(function (req, res, next) {
 });
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/api/users', usersApi);
+app.use('/api/bikes', bikesApi);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

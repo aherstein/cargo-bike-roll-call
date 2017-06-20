@@ -2,4 +2,9 @@ extends layout
 
 block content
     h1= title
-    p Welcome to #{title}
+    each bike, i in bikes
+        h3 #{bike.make} #{bike.model}
+        ul
+            each val, index in bike
+                if  index != "_id"
+                    li #{index.replace(/^\b\w/g, l = > l.toUpperCase())}: #{val}
