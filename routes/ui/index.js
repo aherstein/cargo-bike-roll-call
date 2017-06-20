@@ -2,6 +2,15 @@ const express = require('express');
 const router = express.Router();
 const request = require("request");
 
+function byDateDesc(a, b) {
+    let keyA = new Date(a.meta.date);
+    let keyB = new Date(b.meta.date);
+
+    // Compare the 2 dates
+    if (keyA < keyB) return 1;
+    if (keyA > keyB) return -1;
+    return 0;
+}
 
 /* GET bike listing. */
 router.get('/', function (req, res, next) {
@@ -17,7 +26,7 @@ router.get('/', function (req, res, next) {
 
         res.render('index', {
             title: 'Latest Cargo Bikes',
-            "bikes": JSON.parse(body)
+            "bikes": JSON.parse(body).sort(byDateDesc)
         });
     });
 });

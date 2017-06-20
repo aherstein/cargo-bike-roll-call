@@ -15,9 +15,18 @@ router.post('/', function (req, res) {
     const db = req.db;
     const collection = db.get('bikes');
 
-    console.log(req.body);
+    bike = req.body;
 
-    collection.insert(req.body);
+    // Insert metadata
+    bike.meta = {
+        date: new Date(),
+        ip_address: req.connection.remoteAddress
+    };
+
+    console.log(req);
+    console.log(bike);
+
+    collection.insert(bike);
 
     res.send(200);
 });
