@@ -5,6 +5,8 @@
     </div>
 </template>
 
+<script src="/node_modules/vue-awesome/dist/vue-awesome.js"></script>
+
 <script>
 export default {
     name: 'app'
@@ -49,5 +51,11 @@ export default {
     .toast {
         font-family: 'Avenir Next', Helvetica, Arial, sans-serif;
         font-weight: 500 !important;
+    }
+
+    .fa-icon {
+        width: auto;
+        height: 1em; /* or any other relative font sizes */
+        vertical-align: -0.15em;
     }
 </style>

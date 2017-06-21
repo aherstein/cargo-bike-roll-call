@@ -1,6 +1,9 @@
 <template>
     <div id="bikes-list">
-        <router-link to="/addbike" class="button">Add bike</router-link>
+        <router-link to="/addbike" class="button">
+            <icon name="plus"></icon>
+            Add bike
+        </router-link>
         <div v-for="bike in bikes">
             <h3>{{bike.make}} {{bike.model}}</h3>
             <ul>
@@ -10,6 +13,16 @@
                 </li>
             </ul>
         </div>
+        <!--<mapbox-->
+        <!--access-token="pk.eyJ1IjoiYWhlcnN0ZWluIiwiYSI6IlFUR1ZZWXcifQ.2jkwY2YGFPqCmIGMv5qdLQ"-->
+        <!--:map-options="{-->
+        <!--container: 'map', // container id-->
+        <!--style: 'mapbox://styles/mapbox/dark-v9', //hosted style id-->
+        <!--center: [-77.38, 39], // starting position-->
+        <!--zoom: 3 // starting zoom-->
+        <!--}">-->
+
+        <!--</mapbox>-->
     </div>
 </template>
 
