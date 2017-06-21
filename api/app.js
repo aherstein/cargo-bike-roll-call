@@ -11,8 +11,8 @@ var db = monk('localhost:27017/cargobike');
 var expressVue = require('express-vue');
 var request = require("request");
 
-var usersApi = require('./routes/api/users');
-var bikesApi = require('./routes/api/bikes');
+var usersApi = require('./routes/users')
+var bikesApi = require('./routes/bikes')
 
 var app = express();
 
