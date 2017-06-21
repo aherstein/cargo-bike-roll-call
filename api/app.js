@@ -11,23 +11,12 @@ var db = monk('localhost:27017/cargobike');
 var expressVue = require('express-vue');
 var request = require("request");
 
-
-// var index = require('./routes/ui/index');
 var usersApi = require('./routes/api/users');
 var bikesApi = require('./routes/api/bikes');
 
 var app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-
-// view engine setup for vue
-app.set('vue', {
-    componentsDir: __dirname + '/components',
-    defaultLayout: 'layout'
-});
-app.engine('vue', expressVue);
-app.set('view engine', 'vue');
+app.set('view engine', 'pug');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -43,13 +32,21 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Allow requests from all domains
+const allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', "*");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+}
+app.use(allowCrossDomain);
+
 // Make our db accessible to our router
 app.use(function (req, res, next) {
     req.db = db;
     next();
 });
 
-app.use('/', index);
 app.use('/api/users', usersApi);
 app.use('/api/bikes', bikesApi);
 
