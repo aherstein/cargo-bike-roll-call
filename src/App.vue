@@ -20,4 +20,30 @@ export default {
         color: #2c3e50;
         margin-top: 60px;
     }
+
+    h1, h2 {
+        font-weight: normal;
+    }
+
+    a.button,
+    button {
+        color: #FFF;
+        background: #00B7FF;
+        border: 0px solid #000;
+        border-radius: 4px;
+        padding: 4px 8px;
+        text-decoration: none;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    a.button:hover,
+    button:hover {
+        background: #0095DD;
+    }
+
+    span.label {
+        display: inline-block;
+        width: 10em;
+    }
 </style>

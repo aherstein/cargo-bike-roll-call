@@ -1,12 +1,12 @@
 <template>
     <div id="bikes-list">
-        <a href="/addbike" class="button">Add bike</a>
+        <router-link to="/addbike" class="button">Add bike</router-link>
         <div v-for="bike in bikes">
             <h3>{{bike.make}} {{bike.model}}</h3>
             <ul>
                 <li v-for="(value, name) in bike"
                     v-if="name != '_id' && name != 'make' && name != 'model' && name != 'meta'">
-                    {{name}}: {{value}}
+                    <span class="title">{{name}}</span>: {{value}}
                 </li>
             </ul>
         </div>
@@ -14,6 +14,16 @@
 </template>
 
 <script>
+function byDateDesc(a, b) {
+    let keyA = new Date(a.meta.date)
+    let keyB = new Date(b.meta.date)
+
+    // Compare the 2 dates
+    if (keyA < keyB) return 1
+    if (keyA > keyB) return -1
+    return 0
+}
+
 export default {
     name: 'cargobikes',
     data () {
@@ -24,25 +34,20 @@ export default {
     methods: {
         getBikes () {
             const apiURL = 'http://localhost:3000/api/bikes'
-            let xhr = new XMLHttpRequest()
+            let request = new XMLHttpRequest()
             let self = this
-            xhr.open('GET', apiURL)
-            xhr.onload = function () {
-                self.bikes = JSON.parse(xhr.responseText)
+            request.open('GET', apiURL)
+            request.onload = function () {
+                self.bikes = JSON.parse(request.responseText).sort(byDateDesc)
                 console.log(self.bikes)
             }
-            xhr.send()
+            request.send()
         }
     }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    h1, h2 {
-        font-weight: normal;
-    }
-
     ul {
         list-style-type: none;
         padding: 0;
@@ -53,23 +58,13 @@ export default {
         margin: 0 10px;
     }
 
-    a {
-        color: #42b983;
+    .title {
+        font-weight: 600;
     }
 
-    a.button {
-        color: #FFF;
-        background: #00B7FF;
-        border: 0px solid #000;
-        border-radius: 4px;
-        padding: 4px 8px;
-        text-decoration: none;
-    //text-transform: uppercase;
-        font-size: 14px;
-
-    }
-
-    a.button:hover {
-        background: #0095DD;
+    a.button,
+    button {
+        font-size: large;
+        padding: 8px 16px;;
     }
 </style>
