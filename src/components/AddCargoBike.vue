@@ -1,35 +1,28 @@
 <template>
-    <div id="bikes-list">
-        <a href="/addbike" class="button">Add bike</a>
-        <div v-for="bike in bikes">
-            <h3>{{bike.make}} {{bike.model}}</h3>
-            <ul>
-                <li v-for="(value, name) in bike"
-                    v-if="name != '_id' && name != 'make' && name != 'model' && name != 'meta'">
-                    {{name}}: {{value}}
-                </li>
-            </ul>
-        </div>
+    <div id="add-cargo-bike">
+        Make: <input type="text" v-model="make"/>
+        Model: <input type="text" v-model="model"/>
+        <button v-on:click="addBike">Add bike</button>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'cargobikes',
+    name: 'addcargobike',
     data () {
         return {
-            bikes: this.getBikes()
+            make: '',
+            model: ''
         }
     },
     methods: {
-        getBikes () {
+        addBike () {
             const apiURL = 'http://localhost:3000/api/bikes'
             let xhr = new XMLHttpRequest()
-            let self = this
-            xhr.open('GET', apiURL)
+//            let self = this
+            xhr.open('POST', apiURL)
             xhr.onload = function () {
-                self.bikes = JSON.parse(xhr.responseText)
-                console.log(self.bikes)
+                // TODO
             }
             xhr.send()
         }
