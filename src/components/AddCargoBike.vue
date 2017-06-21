@@ -36,7 +36,21 @@ export default {
             request.open('POST', apiURL)
             request.setRequestHeader('Content-Type', 'application/json')
             request.onload = function () {
-                self.$router.push('/')
+                self.$router.push('/') // Route to home
+
+                let options = { // Options for success/fail notification
+                    theme: 'bubble',
+                    position: 'top-center',
+                    duration: 2000,
+                    className: 'toast'
+                }
+
+                // Check API request status
+                if (request.status === 200) {
+                    self.$toasted.success('Cargo bike ' + self._data.make + ' ' + self._data.model + ' added!', options)
+                } else {
+                    self.$toasted.error('Cargo bike not added!', options)
+                }
             }
             request.send(JSON.stringify(this._data))
         }

@@ -17,7 +17,6 @@ export default {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
-        color: #2c3e50;
         margin-top: 60px;
     }
 
@@ -45,5 +44,10 @@ export default {
     span.label {
         display: inline-block;
         width: 10em;
+    }
+
+    .toast {
+        font-family: 'Avenir Next', Helvetica, Arial, sans-serif;
+        font-weight: 500 !important;
     }
 </style>
