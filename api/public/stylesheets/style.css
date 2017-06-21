@@ -1,0 +1,20 @@
+body {
+  padding: 50px;
+  font: 14px "Avenir Next", "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00B7FF; }
+
+a.button {
+  color: #FFF;
+  background: #00B7FF;
+  border: 0px solid #000;
+  border-radius: 4px;
+  padding: 4px 8px;
+  text-decoration: none;
+  font-size: 14px; }
+
+a.button:hover {
+  background: #0095DD; }
+
+/*# sourceMappingURL=style.css.map */
