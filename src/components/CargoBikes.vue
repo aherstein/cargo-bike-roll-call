@@ -14,7 +14,7 @@
 </template>
 
 <script>
-function byDateDesc(a, b) {
+function byDateDesc (a, b) {
     let keyA = new Date(a.meta.date)
     let keyB = new Date(b.meta.date)
 
