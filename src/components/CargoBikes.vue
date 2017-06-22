@@ -13,16 +13,17 @@
                 </li>
             </ul>
         </div>
-        <!--<mapbox-->
-        <!--access-token="pk.eyJ1IjoiYWhlcnN0ZWluIiwiYSI6IlFUR1ZZWXcifQ.2jkwY2YGFPqCmIGMv5qdLQ"-->
-        <!--:map-options="{-->
-        <!--container: 'map', // container id-->
-        <!--style: 'mapbox://styles/mapbox/dark-v9', //hosted style id-->
-        <!--center: [-77.38, 39], // starting position-->
-        <!--zoom: 3 // starting zoom-->
-        <!--}">-->
-
-        <!--</mapbox>-->
+        <div id="map">
+            <mapbox
+                    access-token="pk.eyJ1IjoiYWhlcnN0ZWluIiwiYSI6IlFUR1ZZWXcifQ.2jkwY2YGFPqCmIGMv5qdLQ"
+                    :map-options="{
+                        container: 'map', // container id
+                        style: 'mapbox://styles/mapbox/dark-v9', //hosted style id
+                        center: [-77.38, 39], // starting position
+                        zoom: 3 // starting zoom
+                    }">
+            </mapbox>
+        </div>
     </div>
 </template>
 
@@ -61,6 +62,12 @@ export default {
 </script>
 
 <style scoped>
+    #map {
+        float: left;
+        display: block;
+        width: 100%;
+    }
+
     ul {
         list-style-type: none;
         padding: 0;
