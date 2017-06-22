@@ -1,0 +1,5 @@
+// To use copy this file to config.js
+
+const config = {}
+
+config.mapboxToken = ''

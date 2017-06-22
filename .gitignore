@@ -104,6 +104,9 @@ typings/
 # dotenv environment variables file
 .env
 
+# Config file
+config.js
+
 .DS_Store
 dist/
 test/unit/coverage
