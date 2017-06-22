@@ -1,26 +1,29 @@
 <template>
-    <div id="bikes-list">
-        <router-link to="/addbike" class="button">
-            <icon name="plus"></icon>
-            Add bike
-        </router-link>
-        <div v-for="bike in bikes">
-            <h3>{{bike.make}} {{bike.model}}</h3>
-            <ul>
-                <li v-for="(value, name) in bike"
-                    v-if="name != '_id' && name != 'make' && name != 'model' && name != 'meta'">
-                    <span class="title">{{name}}</span>: {{value}}
-                </li>
-            </ul>
+    <div>
+        <div id="bikes-list">
+            <router-link to="/addbike" class="button">
+                <icon name="plus"></icon>
+                Add bike
+            </router-link>
+            <div v-for="bike in bikes">
+                <h3>{{bike.make}} {{bike.model}}</h3>
+                <ul>
+                    <li v-for="(value, name) in bike"
+                        v-if="name != '_id' && name != 'make' && name != 'model' && name != 'meta'">
+                        <span class="title">{{name}}</span>: {{value}}
+                    </li>
+                </ul>
+            </div>
         </div>
         <div id="map">
             <mapbox
                     :access-token=mapboxToken
                     :map-options="{
                         container: 'map', // container id
-                        style: 'mapbox://styles/mapbox/dark-v9', //hosted style id
-                        center: [-77.38, 39], // starting position
-                        zoom: 3 // starting zoom
+                        style: 'mapbox://styles/mapbox/light-v9', //hosted style id
+                        center: [-97.38, 39], // starting position
+                        zoom: 3, // starting zoom
+                        scrollZoom: false
                     }"
                     @map-load="mapLoaded">
             </mapbox>
@@ -98,11 +101,16 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
     #map {
         float: left;
         display: block;
         width: 100%;
+    }
+
+    canvas.mapboxgl-canvas {
+        position: relative !important;
+        height: 500px !important;
     }
 
     ul {

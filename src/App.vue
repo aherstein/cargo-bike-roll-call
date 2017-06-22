@@ -5,7 +5,7 @@
     </div>
 </template>
 
-<script src="/node_modules/vue-awesome/dist/vue-awesome.js"></script>
+<!--<script src="/node_modules/vue-awesome/dist/vue-awesome.js"></script>-->
 
 <script>
 export default {
