@@ -3,6 +3,7 @@ import Router from 'vue-router'
 // Plugins
 import Toasted from 'vue-toasted'
 import SweetModal from 'sweet-modal-vue'
+import Places from 'vue-places'
 import 'vue-awesome/icons'
 import Icon from 'vue-awesome/components/Icon'
 import Mapbox from 'mapbox-gl-vue'
@@ -16,6 +17,7 @@ Vue.use(Toasted)
 Vue.use(SweetModal)
 Vue.component('icon', Icon)
 Vue.component('mapbox', Mapbox)
+Vue.component('places', Places)
 
 export default new Router({
     routes: [
