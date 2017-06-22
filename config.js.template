@@ -1,4 +1,4 @@
-// To use copy this file to config.js
+// To use copy this file to config.json
 
 export default {
     mapboxToken: ''
