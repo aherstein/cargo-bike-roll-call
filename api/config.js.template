@@ -1,0 +1,7 @@
+// To use copy this file to config.js
+
+const config = {
+    mapboxToken: ''
+}
+
+module.exports = config;
