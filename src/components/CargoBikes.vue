@@ -15,19 +15,22 @@
         </div>
         <div id="map">
             <mapbox
-                    access-token="pk.eyJ1IjoiYWhlcnN0ZWluIiwiYSI6IlFUR1ZZWXcifQ.2jkwY2YGFPqCmIGMv5qdLQ"
+                    :access-token=mapboxToken
                     :map-options="{
                         container: 'map', // container id
                         style: 'mapbox://styles/mapbox/dark-v9', //hosted style id
                         center: [-77.38, 39], // starting position
                         zoom: 3 // starting zoom
-                    }">
+                    }"
+                    @map-load="mapLoaded">
             </mapbox>
         </div>
     </div>
 </template>
 
 <script>
+import config from '../../config.js'
+
 function byDateDesc (a, b) {
     let keyA = new Date(a.meta.date)
     let keyB = new Date(b.meta.date)
@@ -42,7 +45,9 @@ export default {
     name: 'cargobikes',
     data () {
         return {
-            bikes: this.getBikes()
+            mapboxToken: config.mapboxToken,
+            bikes: this.getBikes(),
+            mapFeatures: this.getMapFeatures()
         }
     },
     methods: {
@@ -56,6 +61,38 @@ export default {
                 console.log(self.bikes)
             }
             request.send()
+        },
+        getMapFeatures () {
+            // Get coordinates from API
+            const apiURL = 'http://localhost:3000/api/bikes/map'
+            let request = new XMLHttpRequest()
+            let self = this
+            request.open('GET', apiURL)
+            request.onload = function () {
+                self.mapFeatures = JSON.parse(request.responseText)
+                console.log(self.mapFeatures)
+            }
+            request.send()
+        },
+        mapLoaded (map) {
+            map.addLayer({
+                'id': 'points',
+                'type': 'symbol',
+                'source': {
+                    'type': 'geojson',
+                    'data': {
+                        'type': 'FeatureCollection',
+                        'features': this.mapFeatures
+                    }
+                },
+                'layout': {
+                    'icon-image': '{icon}-15',
+                    'text-field': '{title}',
+                    'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
+                    'text-offset': [0, 0.6],
+                    'text-anchor': 'top'
+                }
+            })
         }
     }
 }
